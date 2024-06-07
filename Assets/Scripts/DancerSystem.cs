@@ -2,12 +2,17 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
+// You do not need to write execution code for System.
+// This class automatically implements.
+
+// Partial: to use auto generations in unity.
 public partial struct DancerSystem : ISystem
 {
     public void OnUpdate(ref SystemState state)
     {
         var elapsed = (float)SystemAPI.Time.ElapsedTime;
 
+        // SystemAPI から Query して 対象の Component を含む Entity を取得する
         foreach (var (dancer, xform) in
                  SystemAPI.Query<RefRO<Dancer>,
                                  RefRW<LocalTransform>>())
